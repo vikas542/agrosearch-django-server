@@ -1,4 +1,19 @@
-Docs found is : {{ results.numFound }} <br>
-{% for doc in results.docs %}
-    <a href="{{ doc.url }}" target="_blank">{{ doc.title }}</a> <br>
-{% endfor %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <title>{{ query }} | AgroSearch Results </title>
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+</body>
+</html>
+
+
+

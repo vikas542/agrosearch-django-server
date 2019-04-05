@@ -14,8 +14,8 @@ class SearchView(TemplateView):
     paginated_by = 12
 
     def get(self, request, *args, **kwargs):
-        q = request.GET.get('q').replace(":", " ")
-        q = re.findall(r"[\w']+", q)
+        query = request.GET.get('q')
+        q = re.findall(r"[\w']+", query.replace(":", " "))
         page = request.GET.get('page')
         try:
             page = int(page) - 1
@@ -27,4 +27,5 @@ class SearchView(TemplateView):
         context['responseHeader'] = result['responseHeader']
         context['results'] = result['response']
         context['numPage'] = ceil(context['results']['numFound']/self.paginated_by)
+        context['query'] = query
         return self.render_to_response(context)
