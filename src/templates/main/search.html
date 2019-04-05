@@ -3,15 +3,76 @@
 <html lang="zxx" class="no-js">
 <head>
     <title>{{ query }} | AgroSearch Results </title>
-     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body>
-
+<body style="background-image: linear-gradient(#C0CA83,white);background-repeat: no-repeat;background-attachment: fixed;">
+<!-- Header Section -->
+<div class="header">
+    <a href="{% url 'query:index' %}" class="logo">Agrosearch</a>
+    <div class="header-right">
+        <div class="search-container">
+            <form action="{% url 'query:search' %}" method="get">
+                <input type="text" placeholder="Search.." name="q" value="{{ query }}">
+                <button data-wow-duration="1s" data-wow-delay="1.5s"
+                        class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                        style="color: black;border-color: green">Search
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{#<div class="container">#}
+{#    {% for doc in results.docs %}#}
+{#        <div class="row">#}
+{#            <div class="col-12">#}
+{#                <a href="{{ doc.url }}">#}
+{#                    <div class="" href="{{ doc.url }}">#}
+{#                        <h3>{{ doc.title }}</h3>#}
+{#                        <h6>{{ doc.url }}</h6>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#</div>#}
+<!-- Main Section -->
+<div class="container">
+    {% if results.numFound %}
+        <h5>{{ results.numFound }} results found</h5>
+        {% for doc in results.docs %}
+            <div class="pt-5 pl-5 pr-5">
+                <a href="{{ doc.url }}">
+                    <div class="title-div">
+                        <h4>{{ doc.title }}</h4>
+                        <h6>{{ doc.url | truncatechars:'60'}}</h6>
+                    </div>
+                </a>
+                <div class="content-div">
+                    {{ doc.content | truncatewords:'50' }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="container pt-3 pb-5" align="center">
+            <div class="pagination">
+                {% if currentPage > 1 %}
+                    <a href="{% url 'query:search' %}?q={{ query }}&page={{ currentPage|add:"-1" }}">&laquo; Prev</a>
+                {% endif %}
+                {% if currentPage < numPage %}
+                    <a href="{% url 'query:search' %}?q={{ query }}&page={{ currentPage|add:"1" }}"> Next &raquo;</a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <h3 align="center">No results found, please try another keyword</h3>
+        </div>
+    {% endif %}
+</div>
 </body>
 </html>
 
