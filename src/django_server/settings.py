@@ -130,7 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='../staticfiles', cast=str))
+STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='../static', cast=str))
 
 STATIC_URL = '/static/'
 

@@ -1,1 +1,69 @@
-<h1>Main Page</h1>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'img/fav.png' %}">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <title>Agrosearch</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<section class="home-banner-area relative">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-8 col-md-12">
+                <h1 class="wow fadeIn" data-wow-duration="4s" style="color: black">AGROSEARCH</h1>
+                <p class="text-black">
+                    Farming practices made easy!<br>
+                </p>
+                <div class="input-wrap">
+                    <form action="{% url 'query:search' %}" class="form-box d-flex justify-content-between" method="get">
+                        <input type="text" placeholder="Search..." class="form-control" name="q">
+                        <button type="submit" class="btn search-btn">Search</button>
+                    </form>
+                </div>
+                <h4 class="text-black">Quick Links</h4>
+                <div class="courses pt-20">
+                    <a href="{% url 'query:search' %}?q=agricultural+pratices" data-wow-duration="1s" data-wow-delay=".3s"
+                       class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                       style="color: black;border-color: black">Agricultural Pratices</a>
+                    <a href="{% url 'query:search' %}?q=type+of+crops" data-wow-duration="1s" data-wow-delay=".6s"
+                       class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                       style="color: black;border-color: black">Type of Crops</a>
+                    <a href="{% url 'query:search' %}?q=crop+diseases" data-wow-duration="1s" data-wow-delay=".9s"
+                       class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                       style="color: black;border-color: black">Crop Diseases</a>
+                    <a href="{% url 'query:search' %}?q=fertilizers" data-wow-duration="1s" data-wow-delay="1.2s"
+                       class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                       style="color: black;border-color: black">
+                        Fertilizers & Pesticides
+                    </a>
+                    <a href="{% url 'query:search' %}?q=help" data-wow-duration="1s" data-wow-delay="1.5s"
+                       class="primary-btn transparent mr-10 mb-10 wow fadeInDown"
+                       style="color: black;border-color: black">Helpline</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
