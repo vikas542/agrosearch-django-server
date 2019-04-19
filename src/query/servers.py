@@ -20,22 +20,18 @@ class Server:
 class SolrServer(Server):
     core = None
 
-    def __init__(self, core, server_schema='http', sever_host='127.0.0.1', server_port='8983', server_path=None):
-        super().__init__(server_schema, sever_host, server_port, server_path)
+    def __init__(self, core, server_schema='http', server_host='127.0.0.1', server_port='8983', server_path=None):
+        super().__init__(server_schema, server_host, server_port, server_path)
         self.core = core
 
-    def generate_url(self, word, start, rows):
-        fq = ""
-        q = ""
-        for w in word:
-            fq += "fq=content:%s&" % w
-            q += "q=title:%s&" % w
+    def get_url(self):
+        return "{0}://{1}:{2}/solr/{3}/select".format(self.server_schema, self.server_host, self.server_port, self.core)
 
-        return self.server_schema + '://' + self.server_host + ':' + self.server_port + '/solr/' + self.core \
-               + '/select?' + fq + q + 'indent=off&wt=json.wrf&rows=' + str(rows) + '&start=' + str(start)
-
-    def get_result(self, query, start=0, rows=10):
-        response = requests.get(self.generate_url(query, start, rows))
+    def get_result(self, word, start=0, rows=10):
+        query = {'q': ('(title:"{0}"^2 OR content:"{1}"^1)'.format(word, word)), 'indent': 'off', 'wt': 'json',
+                 'rows': str(rows),
+                 'start': str(start)}
+        response = requests.post(self.get_url(), query)
         return response.json()
 
 
