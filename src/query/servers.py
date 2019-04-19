@@ -35,4 +35,4 @@ class SolrServer(Server):
         return response.json()
 
 
-solr = SolrServer(core=CORE_1)
+solr = SolrServer(core='nutch_wofilter', server_host='10.6.0.130')
