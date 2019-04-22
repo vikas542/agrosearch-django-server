@@ -36,3 +36,4 @@ class SolrServer(Server):
 
 
 solr = SolrServer(core='nutch_wofilter', server_host='10.6.0.130')
+solr1 = SolrServer(core='scrapy_filter', server_host='10.6.0.130')

@@ -43,7 +43,7 @@
 <!-- Main Section -->
 <div class="container">
     {% if results.numFound %}
-        <h5>{{ results.numFound }} results found</h5>
+        <h5>{{ results.numFound }} results found in {{ responseHeader.QTime }} ms</h5>
         {% for doc in results.docs %}
             <div class="pt-5 pl-5 pr-5">
                 <a href="{{ doc.url }}">
