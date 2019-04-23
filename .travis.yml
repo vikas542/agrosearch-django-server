@@ -7,10 +7,10 @@ dist: trusty
 before_install:
   - export DJANGO_SETTINGS_MODULE=django_server.settings
   - export DJANGO_SECRET_KEY='cdg163%%tc0^3v1g8r+qr9%8m^(ua^ay_nf*c^9sjda-=4+j^t'
-  - psql -c "CREATE DATABASE agrisyncdb;" -U postgres
-  - psql -c "CREATE USER agrisyncuser WITH LOGIN PASSWORD 'password';" -U postgres
-  - psql -c "ALTER ROLE agrisyncuser WITH CREATEDB;" -U postgres
-  - psql -c "GRANT ALL PRIVILEGES ON DATABASE agrisyncdb TO agrisyncuser;" -U postgres
+  - psql -c "CREATE DATABASE agrosearchdb;" -U postgres
+  - psql -c "CREATE USER agrosearchuser WITH LOGIN PASSWORD 'password';" -U postgres
+  - psql -c "ALTER ROLE agrosearchuser WITH CREATEDB;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE agrosearchdb TO agrosearchuser;" -U postgres
 install:
   - pip3 install coveralls
   - pip3 install pipenv
